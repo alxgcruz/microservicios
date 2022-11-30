@@ -1,0 +1,100 @@
+version: '3.3'
+services:
+  server-discovery:
+    image: alxgcruz/server-discovery:0.0.1-snapshot
+    ports:
+      - 8761:8761
+  server-gateway:
+    image: alxgcruz/server-gateway:0.0.1-snapshot
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-discovery:8761/eureka/
+    ports:
+      - 8766:8766
+  server-monitor:
+    image: alxgcruz/server-monitor:0.0.1-snapshot
+    ports:
+      - 8090:8090
+  postgres:
+    build: servicesData/postgresdb/
+    environment:
+      - POSTGRES_PASSWORD=secret
+    ports:
+      - 5432:5432
+    volumes:
+      - ./blockstorage/postgres:/var/lib/postgresql/data
+  rabbitmq:
+    image: rabbitmq:3.6.12-management-alpine
+    ports:
+      - 15672:15672
+      - 5672:5672
+  api-users:
+    image: alxgcruz/api-users:0.0.1-snapshot
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/red_social_users
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-discovery:8761/eureka/
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_BOOT_ADMIN_URL=http://server-monitor:8090
+    ports:
+      - 8081:8081
+    depends_on:
+      - postgres
+      - rabbitmq
+  api-posts:
+    image: alxgcruz/api-posts:0.0.1-snapshot
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/red_social_posts
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-discovery:8761/eureka/
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_BOOT_ADMIN_URL=http://server-monitor:8090
+    ports:
+      - 8082:8082
+    depends_on:
+      - postgres
+      - rabbitmq
+  api-comments:
+    image: alxgcruz/api-comments:0.0.1-snapshot
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/red_social_comments
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-discovery:8761/eureka/
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_BOOT_ADMIN_URL=http://server-monitor:8090
+    ports:
+      - 8083:8083
+    depends_on:
+      - postgres
+      - rabbitmq
+  api-friendships:
+    image: alxgcruz/api-friendships:0.0.1-snapshot
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/red_social_friendships
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-discovery:8761/eureka/
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_BOOT_ADMIN_URL=http://server-monitor:8090
+    ports:
+      - 8084:8084
+    depends_on:
+      - postgres
+      - rabbitmq
+  api-auth:
+    image: alxgcruz/api-auth:0.0.1-snapshot
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/red_social_auth
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=admin
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://server-discovery:8761/eureka/
+      - SPRING_RABBITMQ_HOST=rabbitmq
+      - SPRING_BOOT_ADMIN_URL=http://server-monitor:8090
+    ports:
+      - 8085:8085
+    depends_on:
+      - postgres
+      - rabbitmq
+  
