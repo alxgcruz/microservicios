@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "1f1a6de7-f6cc-4795-a13d-9113cd3db279",
+		"name": "curso_microservicios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5463956"
+	},
+	"item": [
+		{
+			"name": "examen",
+			"item": [
+				{
+					"name": "GET api-users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{users}}",
+							"host": [
+								"{{users}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET api-users BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{users}}5b85304f-252a-4742-8508-a2d5c19bb2d4",
+							"host": [
+								"{{users}}5b85304f-252a-4742-8508-a2d5c19bb2d4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST api-users",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"alejandro\",\n    \"apellidoPaterno\": \"cruz\",\n    \"apellidoMaterno\": \"gomez\",\n    \"fechaNacimiento\": \"19-08-1988\",\n    \"sexo\": \"m\",\n    \"email\": \"alex@gmail.com\",\n    \"password\": \"123456\",\n    \"estatus\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{users}}",
+							"host": [
+								"{{users}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE api-users",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"david\",\n    \"apellidoPaterno\": \"gomez\",\n    \"apellidoMaterno\": \"cruz\",\n    \"fechaNacimiento\": \"19-08-1988\",\n    \"sexo\": \"m\",\n    \"email\": \"david@gmail.com\",\n    \"password\": \"123456\",\n    \"estatus\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{users}}a827670c-ef20-4558-84b1-36cb3918a761",
+							"host": [
+								"{{users}}a827670c-ef20-4558-84b1-36cb3918a761"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST api-posts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descripcion\": \"Este es mi tercer post\",\n    \"idUsuario\": \"5b85304f-252a-4742-8508-a2d5c19bb2d4\",\n    \"fechaPost\": \"28-11-2022 11:33 am\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{posts}}",
+							"host": [
+								"{{posts}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET api-posts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descripcion\": \"Hola microservicios!\",\n    \"idUsuario\": \"5b85304f-252a-4742-8508-a2d5c19bb2d4\",\n    \"fechaPost\": \"28-11-2022 11:00 am\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{posts}}403cd2b6-4008-4417-ae89-e9296ca20eb1",
+							"host": [
+								"{{posts}}403cd2b6-4008-4417-ae89-e9296ca20eb1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET api-posts BY USER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{posts}}user/7db1f5d9-ba66-4300-9d9a-ce02ff78f947",
+							"host": [
+								"{{posts}}user"
+							],
+							"path": [
+								"7db1f5d9-ba66-4300-9d9a-ce02ff78f947"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE api-posts",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"david\",\n    \"apellidoPaterno\": \"gomez\",\n    \"apellidoMaterno\": \"cruz\",\n    \"fechaNacimiento\": \"19-08-1988\",\n    \"sexo\": \"m\",\n    \"email\": \"david@gmail.com\",\n    \"password\": \"123456\",\n    \"estatus\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{posts}}80c1a49e-7a4e-403b-a7f9-0f98b2f5097e",
+							"host": [
+								"{{posts}}80c1a49e-7a4e-403b-a7f9-0f98b2f5097e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nuevo comentario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"comentario\": \"Este es mi segundo comentario\",\n    \"idUsuario\": \"7db1f5d9-ba66-4300-9d9a-ce02ff78f947\",\n    \"idPublicacion\": \"60e99942-ef87-412a-ac23-fa81dce8d315\",\n    \"autorizado\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{comments}}",
+							"host": [
+								"{{comments}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Comentario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{comments}}8f88398c-dd2e-428c-9603-4781188bc545",
+							"host": [
+								"{{comments}}8f88398c-dd2e-428c-9603-4781188bc545"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comentarios por publicacion",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{comments}}60e99942-ef87-412a-ac23-fa81dce8d315",
+							"host": [
+								"{{comments}}60e99942-ef87-412a-ac23-fa81dce8d315"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Autorizaciones",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{auth}}",
+							"host": [
+								"{{auth}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
